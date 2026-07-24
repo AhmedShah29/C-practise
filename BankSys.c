@@ -45,14 +45,44 @@ int main() {
 }
 
 void checkBalance(float balance) {
-    
+    printf("\n ur current balance is: $%.2f\n", balance);
 }
+
 float deposit() {
 
+    float amount = 0.0f;
 
-    return 0.0f;
+    printf("\nEnter amout to deposit: $");
+    scanf("%f", &amount);
+
+    if(amount < 0){
+        printf("Invaild amount");
+        return 0.0f;
+    }
+    else{
+        printf("Successfully desposited $%.2f\n", amount);
+        return amount;
+    }
 }
+
 float withdraw(float balance) {
 
-    return 0.0f;
+    float amount = 0.0f;
+
+    printf("\nEnter amount to withdraw: $");
+    scanf("%f", &amount);
+
+    if(amount < 0){
+        printf("Invaild amount");
+        return 0.0f;
+    }
+    else if(amount > balance){
+        printf("Insufficient funds! Your balance is $%.2f\n", balance);
+        return 0.0f;
+    }
+    else{
+        printf("Successfully withdrew $%.2f\n", amount);
+        return amount;
+    }
+
 }
