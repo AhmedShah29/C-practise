@@ -5,14 +5,12 @@
 
 #define ArrayLength(arr) (sizeof(arr) / sizeof(arr[0]))
 
-#define ArrayForEtch(arr, fn) ( \
-    do{ \
-        size_t len = ArrayLength(arr); \
-        for(size_t i = 0; i < len; i++){ \
-        fn(arr[i]) \
-        } \
-    } while(0) \
-)
+#define ArrayForEtch(arr, fn) ({\
+    size_t len = ArrayLength(arr); \
+    for(size_t i = 0; i < len; i++){ \
+    fn(arr[i]); \
+    } \
+})
 
 #define ArrayHas(arr, value) ({ \
     bool found = false; \
