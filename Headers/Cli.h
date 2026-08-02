@@ -21,6 +21,17 @@
 #define cyan(fmt, ...) printf("\x1b[36m" fmt "\x1b[0m", ##__VA_ARGS__)
 #define bold(fmt, ...) printf("\x1b[1m" fmt "\x1b[0m", ##__VA_ARGS__)
 
+// Spinner
+#define Spinner(msg, count, speed_ms) do { \
+    char frames[4] = {'|', '/', '-', '\\'}; \
+    for (int i = 0; i < (count); i++) { \
+        printf("\r%c %s", (msg), frames[i % 4]); \
+        fflush(stdout); \
+        sleep_ms(speed_ms); \
+    } \
+    printf("\r\x1b[K"); \
+} while(0)
+
 // creen clear
 #define ClearScreen() printf("\x1b[2J\x1b[H")
 
@@ -30,14 +41,13 @@
     buffer[strcspn(buffer, "\n")] = '\0'; \
 } while(0)
 
-#define Spinner(msg, count, speed_ms) do { \
-    char frames[4] = {'|', '/', '-', '\\'}; \
-    for (int i = 0; i < (count); i++) { \
-        printf("\r%s %c", (msg), frames[i % 4]); \
-        fflush(stdout); \
-        sleep_ms(speed_ms); \
-    } \
-    printf("\r\x1b[K"); \
-} while(0)
-
 #endif
+
+/*
+    planned fns to be added
+    Confirm(msg)
+    ProgressBar()
+    GetPass()
+    StartSpinner(SpinnerName, msg)
+    StopSpinner(SpinnreName)
+ */
